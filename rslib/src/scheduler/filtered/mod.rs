@@ -6,7 +6,7 @@ mod custom_study;
 
 use crate::config::ConfigKey;
 use crate::config::SchedulerVersion;
-use crate::decks::FilteredDeck;
+use crate::decks::{FilteredDeck, FilteredSearchOrder};
 use crate::decks::FilteredSearchTerm;
 use crate::error::FilteredDeckError;
 use crate::prelude::*;
@@ -218,7 +218,8 @@ impl Collection {
                     .search_terms
                     .get_mut(0)
                     .unwrap();
-                term1.search = format!("{search} is:due");
+                term1.search = format!("{search} is:review");
+                term1.order = FilteredSearchOrder::Due as i32;
                 let term2 = deck
                     .filtered_mut()
                     .unwrap()
